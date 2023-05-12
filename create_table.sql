@@ -1,0 +1,77 @@
+CREATE TABLE Employees (
+ Employee_ID INT PRIMARY KEY,
+ Name VARCHAR(50) NOT NULL,
+ Position VARCHAR(50) NOT NULL,
+ Phone VARCHAR(20) NOT NULL,
+ Email VARCHAR(100) NOT NULL,
+ HireDate DATE NOT NULL,
+ Salary DECIMAL(10,2) NOT NULL
+);
+CREATE TABLE Enclosures (
+ Enclosure_ID INT PRIMARY KEY,
+ Type VARCHAR(50) NOT NULL,
+ Location VARCHAR(100) NOT NULL,
+ Capacity INT NOT NULL,
+ Occupancy INT NOT NULL
+);
+
+CREATE TABLE Animals (
+ Animal_ID INT PRIMARY KEY,
+ Species VARCHAR(50) NOT NULL,
+ Name VARCHAR(50) NOT NULL,
+ DOB DATE NOT NULL,
+ Gender CHAR(1) NOT NULL,
+ HealthStatus VARCHAR(50) NOT NULL,
+ Enclosure_ID INT NOT NULL,
+ FOREIGN KEY (Enclosure_ID) REFERENCES Enclosures (Enclosure_ID)
+);
+
+CREATE TABLE Employees_Enclosures (
+ Enclosure_ID INT NOT NULL,
+ Employee_ID INT NOT NULL,
+ PRIMARY KEY (Enclosure_ID, Employee_ID),
+ FOREIGN KEY (Enclosure_ID) REFERENCES Enclosures (Enclosure_ID),
+ FOREIGN KEY (Employee_ID) REFERENCES Employees (Employee_ID)
+);
+
+CREATE TABLE Visitors (
+ Visitor_ID INT PRIMARY KEY,
+ Name VARCHAR(50) NOT NULL,
+ Phone VARCHAR(20) NOT NULL,
+ Email VARCHAR(100) NOT NULL,
+ Payment DECIMAL(10,2) NOT NULL
+);
+CREATE TABLE Vendors (
+ Vendor_ID INT PRIMARY KEY,
+ Vendor_Name VARCHAR(50) NOT NULL,
+ Phone VARCHAR(20) NOT NULL,
+ Email VARCHAR(100) NOT NULL,
+ VendorType VARCHAR(50) NOT NULL
+);
+CREATE TABLE Events (
+ Event_ID INT PRIMARY KEY,
+ Event_Name VARCHAR(50) NOT NULL,
+ Date DATE NOT NULL,
+ Time TIME NOT NULL,
+ Location VARCHAR(100) NOT NULL,
+ AdmissionPrice DECIMAL(10,2) NOT NULL
+);
+CREATE TABLE Tickets (
+ TicketNumber INT PRIMARY KEY,
+ Date DATE NOT NULL,
+ AdmissionPrice DECIMAL(10,2) NOT NULL,
+ Visitor_ID INT NOT NULL,
+ Event_ID INT NOT NULL,
+ FOREIGN KEY (Visitor_ID) REFERENCES Visitors (Visitor_ID),
+ FOREIGN KEY (Event_ID) REFERENCES Events (Event_ID)
+);
+
+CREATE TABLE Sales (
+ Sale_ID INT PRIMARY KEY,
+ Date DATE NOT NULL,
+ ItemPrice DECIMAL(10,2) NOT NULL,
+ Employee_ID INT NOT NULL,
+ Vendor_ID INT NOT NULL,
+ FOREIGN KEY (Employee_ID) REFERENCES Employees (Employee_ID),
+ FOREIGN KEY (Vendor_ID) REFERENCES Vendors (Vendor_ID)
+);
