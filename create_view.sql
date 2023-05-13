@@ -6,10 +6,10 @@ CREATE VIEW AnimalEnclosureEmployee AS
 	INNER JOIN Employees emp ON ee.Employee_ID = emp.Employee_ID;
     
 CREATE VIEW VendorSalesEmployee AS
-	SELECT v.Vendor_ID, v.Vendor_Name, v.VendorType, s.Sale_ID, s.Date, s.ItemPrice, e.Employee_ID, e.Name, e.Position
-	FROM Vendors v
-    LEFT JOIN Vendors ON s.Vendor_ID = v.Vendor_ID
-    INNER JOIN Employees ON Sales.Employee_ID = Employees.Employee_ID;
+    SELECT v.Vendor_ID, v.Vendor_Name, v.VendorType, s.Sale_ID, s.Date, s.ItemPrice, e.Employee_ID, e.Name, e.Position
+    FROM Vendors v
+    LEFT JOIN Sales s ON s.Vendor_ID = v.Vendor_ID
+    INNER JOIN Employees e ON s.Employee_ID = e.Employee_ID;
     
 CREATE VIEW VisitorTicketEvent AS
 	SELECT v.Name, v.Phone, v.Email, t.TicketNumber, t.Date, t.AdmissionPrice, e.Event_Name, e.Time, e.Location, e.AdmissionPrice AS Event_Price
