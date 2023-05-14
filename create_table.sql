@@ -20,7 +20,7 @@ CREATE TABLE Animals (
  Species VARCHAR(50) NOT NULL,
  Name VARCHAR(50) NOT NULL,
  DOB DATE NOT NULL,
- Gender CHAR(1) NOT NULL,
+ Gender CHAR(10) NOT NULL,
  HealthStatus VARCHAR(50) NOT NULL,
  Enclosure_ID INT NOT NULL,
  FOREIGN KEY (Enclosure_ID) REFERENCES Enclosures (Enclosure_ID)
@@ -39,7 +39,7 @@ CREATE TABLE Visitors (
  Name VARCHAR(50) NOT NULL,
  Phone VARCHAR(20) NOT NULL,
  Email VARCHAR(100) NOT NULL,
- Payment DECIMAL(10,2) NOT NULL
+ Payment VARCHAR(100) NOT NULL
 );
 CREATE TABLE Vendors (
  Vendor_ID INT PRIMARY KEY,
@@ -61,7 +61,7 @@ CREATE TABLE Tickets (
  Date DATE NOT NULL,
  AdmissionPrice DECIMAL(10,2) NOT NULL,
  Visitor_ID INT NOT NULL,
- Event_ID INT NOT NULL,
+ Event_ID INT,
  FOREIGN KEY (Visitor_ID) REFERENCES Visitors (Visitor_ID),
  FOREIGN KEY (Event_ID) REFERENCES Events (Event_ID)
 );
