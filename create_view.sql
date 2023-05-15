@@ -13,6 +13,6 @@ CREATE VIEW Vendor_vw AS
     
 CREATE VIEW Visitor_vw AS
 	SELECT v.Name, v.Phone, v.Email, t.TicketNumber, t.Date, t.AdmissionPrice, e.Event_Name, e.Time, e.Location, e.AdmissionPrice AS Event_Price
-	FROM visitors v
-	JOIN tickets t ON v.Visitor_ID = t.Visitor_ID
+	FROM Visitors v
+	JOIN Tickets t ON v.Visitor_ID = t.Visitor_ID
 	LEFT JOIN Events e ON t.Event_ID = e.Event_ID;
